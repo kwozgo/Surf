@@ -9,6 +9,8 @@ final class TableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+
+        tableView.isScrollEnabled = false
     }
 
     override func viewWillLayoutSubviews() {

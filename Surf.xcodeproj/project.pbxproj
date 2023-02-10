@@ -36,6 +36,7 @@
 		722E0B782996BC0000779DBB /* TableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 722E0B6B2996BC0000779DBB /* TableViewController.xib */; };
 		722E0B7A2996BCEF00779DBB /* UIApplication+UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B792996BCEF00779DBB /* UIApplication+UIWindow.swift */; };
 		722E0B7C2996BD5700779DBB /* SubmitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B7B2996BD5700779DBB /* SubmitView.swift */; };
+		722E0B7E2996BE3100779DBB /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B7D2996BE3100779DBB /* ModalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		722E0B6B2996BC0000779DBB /* TableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewController.xib; sourceTree = "<group>"; };
 		722E0B792996BCEF00779DBB /* UIApplication+UIWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+UIWindow.swift"; sourceTree = "<group>"; };
 		722E0B7B2996BD5700779DBB /* SubmitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitView.swift; sourceTree = "<group>"; };
+		722E0B7D2996BE3100779DBB /* ModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 				722E0B562996BC0000779DBB /* Subviews */,
 				722E0B6A2996BC0000779DBB /* TableViewController.swift */,
 				722E0B6B2996BC0000779DBB /* TableViewController.xib */,
+				722E0B7D2996BE3100779DBB /* ModalViewController.swift */,
 			);
 			path = Surf;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				722E0B502996BBA200779DBB /* TagDatabase.swift in Sources */,
 				722E0B4F2996BBA200779DBB /* Color.swift in Sources */,
 				722E0B6C2996BC0000779DBB /* CollectionViewCell.swift in Sources */,
+				722E0B7E2996BE3100779DBB /* ModalViewController.swift in Sources */,
 				722E0B772996BC0000779DBB /* TableViewController.swift in Sources */,
 				722E0B712996BC0000779DBB /* HorizontalDynamicItemWidthFlowLayout.swift in Sources */,
 				722E0B522996BBA200779DBB /* TagViewModel+LoopScrollModel.swift in Sources */,
