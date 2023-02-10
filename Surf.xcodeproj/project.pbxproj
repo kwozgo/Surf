@@ -46,6 +46,9 @@
 		722E0B8D2996D0E400779DBB /* LoopScrollManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B8C2996D0E400779DBB /* LoopScrollManagerDelegate.swift */; };
 		722E0B8F2996D17200779DBB /* Double+CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B8E2996D17200779DBB /* Double+CGFloat.swift */; };
 		722E0B912996D17A00779DBB /* Int+CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B902996D17A00779DBB /* Int+CGFloat.swift */; };
+		722E0B952996EC1500779DBB /* ModalPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B942996EC1500779DBB /* ModalPresenter.swift */; };
+		722E0B972996ECDE00779DBB /* ModalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B962996ECDE00779DBB /* ModalState.swift */; };
+		722E0B9A2996ED0800779DBB /* ModalState+CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B992996ED0800779DBB /* ModalState+CGFloat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +93,9 @@
 		722E0B8C2996D0E400779DBB /* LoopScrollManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopScrollManagerDelegate.swift; sourceTree = "<group>"; };
 		722E0B8E2996D17200779DBB /* Double+CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+CGFloat.swift"; sourceTree = "<group>"; };
 		722E0B902996D17A00779DBB /* Int+CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+CGFloat.swift"; sourceTree = "<group>"; };
+		722E0B942996EC1500779DBB /* ModalPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPresenter.swift; sourceTree = "<group>"; };
+		722E0B962996ECDE00779DBB /* ModalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalState.swift; sourceTree = "<group>"; };
+		722E0B992996ED0800779DBB /* ModalState+CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModalState+CGFloat.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				722E0B422996BBA200779DBB /* Color */,
+				722E0B982996ECE300779DBB /* ModalState */,
 				722E0B472996BBA200779DBB /* TagViewModel */,
 				722E0B412996BBA200779DBB /* SectionTag.swift */,
 				722E0B462996BBA200779DBB /* TagDatabase.swift */,
@@ -215,10 +222,8 @@
 		722E0B552996BC0000779DBB /* Surf */ = {
 			isa = PBXGroup;
 			children = (
-				722E0B562996BC0000779DBB /* Views */,
-				722E0B6A2996BC0000779DBB /* TableViewController.swift */,
-				722E0B6B2996BC0000779DBB /* TableViewController.xib */,
-				722E0B7D2996BE3100779DBB /* ModalViewController.swift */,
+				722E0B932996EBFA00779DBB /* View */,
+				722E0B922996EBF400779DBB /* Presenter */,
 			);
 			path = Surf;
 			sourceTree = "<group>";
@@ -227,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				722E0B7B2996BD5700779DBB /* SubmitView.swift */,
+				722E0B9E2996F14800779DBB /* Table */,
 				722E0B572996BC0000779DBB /* Cells */,
 				722E0B652996BC0000779DBB /* Headers */,
 			);
@@ -318,6 +324,41 @@
 			path = LoopScroll;
 			sourceTree = "<group>";
 		};
+		722E0B922996EBF400779DBB /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				722E0B942996EC1500779DBB /* ModalPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		722E0B932996EBFA00779DBB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				722E0B562996BC0000779DBB /* Views */,
+				722E0B7D2996BE3100779DBB /* ModalViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		722E0B982996ECE300779DBB /* ModalState */ = {
+			isa = PBXGroup;
+			children = (
+				722E0B962996ECDE00779DBB /* ModalState.swift */,
+				722E0B992996ED0800779DBB /* ModalState+CGFloat.swift */,
+			);
+			path = ModalState;
+			sourceTree = "<group>";
+		};
+		722E0B9E2996F14800779DBB /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				722E0B6A2996BC0000779DBB /* TableViewController.swift */,
+				722E0B6B2996BC0000779DBB /* TableViewController.xib */,
+			);
+			path = Table;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -406,10 +447,13 @@
 				722E0B3F2996BB9C00779DBB /* UITableView.swift in Sources */,
 				722E0B532996BBA200779DBB /* TagViewModel.swift in Sources */,
 				722E0B6E2996BC0000779DBB /* FlexibleAreaCell.swift in Sources */,
+				722E0B952996EC1500779DBB /* ModalPresenter.swift in Sources */,
 				722E0B842996C93200779DBB /* UICollectionView.swift in Sources */,
+				722E0B9A2996ED0800779DBB /* ModalState+CGFloat.swift in Sources */,
 				722E0B512996BBA200779DBB /* TagViewModel+Color.swift in Sources */,
 				722E0B502996BBA200779DBB /* TagDatabase.swift in Sources */,
 				722E0B4F2996BBA200779DBB /* Color.swift in Sources */,
+				722E0B972996ECDE00779DBB /* ModalState.swift in Sources */,
 				722E0B912996D17A00779DBB /* Int+CGFloat.swift in Sources */,
 				722E0B6C2996BC0000779DBB /* CollectionViewCell.swift in Sources */,
 				722E0B7E2996BE3100779DBB /* ModalViewController.swift in Sources */,

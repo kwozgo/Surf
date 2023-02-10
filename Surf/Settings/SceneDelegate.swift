@@ -10,16 +10,11 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-
+        let modalPresenter = ModalPresenter(dataSource: TagDatabase.collection)
         let modalViewController = ModalViewController()
-        let rootViewController = UINavigationController()
-        let backgroundImage = UIImage(named: "Background")!
-        rootViewController.view = UIImageView(image: backgroundImage)
-        modalViewController.modalPresentationStyle = .overCurrentContext
-
-        window?.rootViewController = rootViewController
+        modalViewController.presenter = modalPresenter
+        modalPresenter.view = modalViewController
+        window?.rootViewController = modalViewController
         window?.makeKeyAndVisible()
-
-        rootViewController.present(modalViewController, animated: true)
     }
 }

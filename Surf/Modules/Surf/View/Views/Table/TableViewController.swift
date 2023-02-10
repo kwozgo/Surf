@@ -7,8 +7,8 @@ protocol CanConfigureCell {
 final class TableViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     
-    private let dataSource: [TagSectionViewModel] = TagDatabase.collection
-    
+    var dataSource: [TagSectionViewModel] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
@@ -93,7 +93,8 @@ extension TableViewController: UITableViewDataSource {
         else {
             return UITableViewCell()
         }
-        cell.configure(with: dataSource[indexPath.section].tags)
+        let collectionDataSource = Array(dataSource[indexPath.section].tags.prefix(10))
+        cell.configure(with: collectionDataSource)
         cell.selectionStyle = .none
         return cell
     }

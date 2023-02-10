@@ -1,36 +1,13 @@
 import UIKit
 
+protocol IsModalPresenter {
+    var modalState: ModalState { get set }
+    var dataSource: [TagSectionViewModel] { get }
+}
+
 final class ModalViewController: UIViewController {
-    private enum ModalState {
-        case mini
-        case half
-        case full
-        case dismiss
-        
-        var height: CGFloat {
-            switch self {
-            case .mini:
-                return 305
-            case .half:
-                return 465
-            case .full:
-                return screenHeight - statusBarHeight
-            case .dismiss:
-                return 200
-            }
-        }
-        
-        // MARK: - Private Helpers
-        
-        private var screenHeight: CGFloat {
-            UIScreen.main.bounds.height
-        }
-        
-        private var statusBarHeight: CGFloat {
-            UIApplication.shared.keyWindow?.windowScene?.statusBarManager?.statusBarFrame.height ?? .zero
-        }
-    }
-    
+    var presenter: IsModalPresenter!
+
     private enum DragDirection {
         case up
         case down
@@ -39,9 +16,7 @@ final class ModalViewController: UIViewController {
             self = state ? .down : .up
         }
     }
-    
-    private var modalState: ModalState = .mini
-    
+
     private lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -68,20 +43,16 @@ final class ModalViewController: UIViewController {
         return view
     }()
     
-    private func submitApplication() {
-        let alertController = UIAlertController(
-            title: "Поздравляем!",
-            message: "Ваша заявка успешно отправлена!",
-            preferredStyle: .alert
-        )
-        let close = UIAlertAction(title: "Закрыть", style: .destructive)
-        alertController.addAction(close)
-        self.present(alertController, animated: true)
-    }
-    
+    private lazy var backstageView: UIView = {
+        let backgroundImage = UIImage(named: "Background")!
+        let view = UIImageView(image: backgroundImage)
+        return view
+    }()
     
     private lazy var collectionController: TableViewController = {
-        TableViewController()
+        let controller = TableViewController()
+        controller.dataSource = presenter.dataSource
+        return controller
     }()
     
     private var containerViewHeightConstraint: NSLayoutConstraint?
@@ -91,7 +62,6 @@ final class ModalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSelf()
-        configureSubmitContainerViewConstraints()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -104,11 +74,25 @@ final class ModalViewController: UIViewController {
     
     // MARK: - Configuration Methods
     
-    func configureSelf() {
+    private func configureSelf() {
         view.backgroundColor = .clear
+        configureBackstageConstraints()
         configureGesture()
         configureContainerViewConstraints()
         configureContentViewConstraints()
+        configureSubmitContainerViewConstraints()
+    }
+    
+    func configureBackstageConstraints() {
+        view.addSubview(backstageView)
+        backstageView.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [
+            backstageView.topAnchor.constraint(equalTo: view.topAnchor),
+            backstageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            backstageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backstageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ]
+        NSLayoutConstraint.activate(constraints)
     }
     
     private func configureGesture() {
@@ -131,11 +115,11 @@ final class ModalViewController: UIViewController {
     
     private func configureDynamicContainerViewConstraints() {
         /// Set default (`mini`) container height
-        containerViewHeightConstraint = containerView.heightAnchor.constraint(equalToConstant: modalState.height)
+        containerViewHeightConstraint = containerView.heightAnchor.constraint(equalToConstant: presenter.modalState.height)
         
         /// By setting the height to default (`mini`) height, the container will be hide below the bottom anchor view
         /// Later, will bring it up by set it to `.zero`, set the constant to default (`mini`) height to bring it down again
-        containerViewBottomConstraint = containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: modalState.height)
+        containerViewBottomConstraint = containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: presenter.modalState.height)
         
         containerViewHeightConstraint?.isActive = true
         containerViewBottomConstraint?.isActive = true
@@ -165,7 +149,7 @@ final class ModalViewController: UIViewController {
         ]
         NSLayoutConstraint.activate(constraints)
         
-        submitContainerViewBottomConstraint = submitContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: modalState.height)
+        submitContainerViewBottomConstraint = submitContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: presenter.modalState.height)
         submitContainerViewBottomConstraint?.isActive = true
     }
     
@@ -203,7 +187,7 @@ final class ModalViewController: UIViewController {
         dragMovementHeight: CGFloat,
         gesture: UIPanGestureRecognizer
     ) {
-        let newHeight = modalState.height - dragMovementHeight
+        let newHeight = presenter.modalState.height - dragMovementHeight
         if gestureState == .changed {
             setActualContainerHeight(newHeight)
             setActualSubmitContainerHeight(newHeight, dragMovementHeight: dragMovementHeight)
@@ -221,7 +205,7 @@ final class ModalViewController: UIViewController {
     
     private func setActualSubmitContainerHeight(_ newHeight: CGFloat, dragMovementHeight: CGFloat) {
         if newHeight < ModalState.mini.height {
-            switch modalState {
+            switch presenter.modalState {
             case .mini:
                 submitContainerViewBottomConstraint?.constant = dragMovementHeight
             case .half:
@@ -258,7 +242,7 @@ final class ModalViewController: UIViewController {
     
     // MARK: - Animation Methods
     
-    func animatePresentationMovement() {
+    private func animatePresentationMovement() {
         UIView.animate(withDuration: 0.3) {
             self.containerViewBottomConstraint?.constant = .zero
             self.submitContainerViewBottomConstraint?.constant = .zero
@@ -267,7 +251,7 @@ final class ModalViewController: UIViewController {
     }
     
     private func animateMovement(to newState: ModalState) {
-        modalState = newState
+        presenter.modalState = newState
         UIView.animate(withDuration: 0.3) {
             self.containerViewHeightConstraint?.constant = newState.height
             self.submitContainerViewBottomConstraint?.constant = .zero
@@ -277,11 +261,28 @@ final class ModalViewController: UIViewController {
     
     func animateDismissMovement(gesture: UIPanGestureRecognizer) {
         gesture.isEnabled = false
-        modalState = .dismiss
+        presenter.modalState = .dismiss
         UIView.animate(withDuration: 0.3) {
             self.containerViewBottomConstraint?.constant = ModalState.mini.height
             self.submitContainerViewBottomConstraint?.constant = ModalState.mini.height
             self.view.layoutIfNeeded()
         }
     }
+    
+    // MARK: - Alert
+    
+    private func submitApplication() {
+        let alertController = UIAlertController(
+            title: "Поздравляем!",
+            message: "Ваша заявка успешно отправлена!",
+            preferredStyle: .alert
+        )
+        let close = UIAlertAction(title: "Закрыть", style: .destructive)
+        alertController.addAction(close)
+        self.present(alertController, animated: true)
+    }
 }
+
+// MARK: - ModalViewController+IsModalView
+
+extension ModalViewController: IsModalView {}
