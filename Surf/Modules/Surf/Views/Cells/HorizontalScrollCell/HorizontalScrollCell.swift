@@ -3,33 +3,18 @@ import UIKit
 final class HorizontalScrollCell: UITableViewCell {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var collectionViewHeightConstraint: NSLayoutConstraint!
-
-    var loopScrollManager: LoopScrollManager!
+    
+    var collectionLoopScrollManager: CollectionLoopScrollManager!
     private var dataSource: [TagViewModel] = []
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         collectionView.registerCell(with: "CollectionViewCell")
         configureCollectionHeight()
     }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        guard loopScrollManager == nil else { return }
-        let configuration = CollectionViewConfiguration(
-            layoutType: .numberOfCellOnScreen(4),
-            scrollingDirection: .horizontal
-        )
-        loopScrollManager = LoopScrollManager(
-            withCollectionView: collectionView,
-            andData: dataSource,
-            delegate: self,
-            configuration: configuration
-        )
-    }
-
+    
     // MARK: - Private Helpers
-
+    
     private func configureCollectionHeight() {
         guard let cell = UINib.instantiateNibCell(for: CollectionViewCell.self, owner: self) else { return }
         cell.configure(TagViewModel(title: "Any Text", state: Bool.random()))
@@ -37,23 +22,37 @@ final class HorizontalScrollCell: UITableViewCell {
         let maximumAllowableHeight = cellHeight
         collectionViewHeightConstraint.constant = maximumAllowableHeight
     }
+    
+    private func configureLoopScrollManager() {
+        let configuration = CollectionViewConfiguration(
+            layoutType: .numberOfCellOnScreen(4),
+            scrollingDirection: .horizontal
+        )
+        collectionLoopScrollManager = CollectionLoopScrollManager(
+            with: collectionView,
+            dataSource: dataSource,
+            delegate: self,
+            configuration: configuration
+        )
+    }
 }
 
 // MARK: - HorizontalScrollCell+CanConfigureCell
 
 extension HorizontalScrollCell: CanConfigureCell {
-
+    
     func configure(with viewModels: [TagViewModel]) {
         dataSource = viewModels
+        configureLoopScrollManager()
     }
 }
 
 // MARK: - HorizontalScrollCell+InfiniteScrollingBehaviourDelegate
 
 extension HorizontalScrollCell: LoopScrollManagerDelegate {
-
+    
     func configureCell(
-        _ manager: LoopScrollManager,
+        _ manager: CollectionLoopScrollManager,
         at indexPath: IndexPath,
         origin index: Int,
         viewModel: LoopScrollModel
@@ -70,9 +69,9 @@ extension HorizontalScrollCell: LoopScrollManagerDelegate {
         cell.configure(viewModel)
         return cell
     }
-
-    func loopScrollManager(
-        _ manager: LoopScrollManager,
+    
+    func collectionLoopScrollManager(
+        _ manager: CollectionLoopScrollManager,
         didSelectAt indexPath: IndexPath,
         origin index: Int,
         viewModel: LoopScrollModel
@@ -84,9 +83,9 @@ extension HorizontalScrollCell: LoopScrollManagerDelegate {
         }
         setUpdateState(for: cell, at: index)
     }
-
+    
     private func setUpdateState(for cell: CollectionViewCell, at index: Int) {
         dataSource[index].state.toggle()
-        loopScrollManager.reload(with: dataSource)
+        collectionLoopScrollManager.reload(with: dataSource)
     }
 }

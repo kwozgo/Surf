@@ -29,7 +29,7 @@
 		722E0B712996BC0000779DBB /* HorizontalDynamicItemWidthFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B602996BC0000779DBB /* HorizontalDynamicItemWidthFlowLayout.swift */; };
 		722E0B722996BC0000779DBB /* HorizontalScrollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B622996BC0000779DBB /* HorizontalScrollCell.swift */; };
 		722E0B732996BC0000779DBB /* HorizontalScrollCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 722E0B632996BC0000779DBB /* HorizontalScrollCell.xib */; };
-		722E0B742996BC0000779DBB /* LoopScrollManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B642996BC0000779DBB /* LoopScrollManager.swift */; };
+		722E0B742996BC0000779DBB /* CollectionLoopScrollManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B642996BC0000779DBB /* CollectionLoopScrollManager.swift */; };
 		722E0B752996BC0000779DBB /* TagSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B672996BC0000779DBB /* TagSectionHeader.swift */; };
 		722E0B762996BC0000779DBB /* TagTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B692996BC0000779DBB /* TagTableHeader.swift */; };
 		722E0B772996BC0000779DBB /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B6A2996BC0000779DBB /* TableViewController.swift */; };
@@ -73,7 +73,7 @@
 		722E0B602996BC0000779DBB /* HorizontalDynamicItemWidthFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalDynamicItemWidthFlowLayout.swift; sourceTree = "<group>"; };
 		722E0B622996BC0000779DBB /* HorizontalScrollCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalScrollCell.swift; sourceTree = "<group>"; };
 		722E0B632996BC0000779DBB /* HorizontalScrollCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontalScrollCell.xib; sourceTree = "<group>"; };
-		722E0B642996BC0000779DBB /* LoopScrollManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoopScrollManager.swift; sourceTree = "<group>"; };
+		722E0B642996BC0000779DBB /* CollectionLoopScrollManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionLoopScrollManager.swift; sourceTree = "<group>"; };
 		722E0B672996BC0000779DBB /* TagSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSectionHeader.swift; sourceTree = "<group>"; };
 		722E0B692996BC0000779DBB /* TagTableHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTableHeader.swift; sourceTree = "<group>"; };
 		722E0B6A2996BC0000779DBB /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -277,7 +277,6 @@
 				722E0B852996D02C00779DBB /* LoopScroll */,
 				722E0B622996BC0000779DBB /* HorizontalScrollCell.swift */,
 				722E0B632996BC0000779DBB /* HorizontalScrollCell.xib */,
-				722E0B642996BC0000779DBB /* LoopScrollManager.swift */,
 			);
 			path = HorizontalScrollCell;
 			sourceTree = "<group>";
@@ -314,6 +313,7 @@
 				722E0B882996D05300779DBB /* LayoutType.swift */,
 				722E0B8A2996D06100779DBB /* CollectionViewConfiguration.swift */,
 				722E0B8C2996D0E400779DBB /* LoopScrollManagerDelegate.swift */,
+				722E0B642996BC0000779DBB /* CollectionLoopScrollManager.swift */,
 			);
 			path = LoopScroll;
 			sourceTree = "<group>";
@@ -398,7 +398,7 @@
 				722E0B4D2996BBA200779DBB /* UIColor+HEX.swift in Sources */,
 				722E0B542996BBA200779DBB /* TagSectionViewModel.swift in Sources */,
 				722E0B752996BC0000779DBB /* TagSectionHeader.swift in Sources */,
-				722E0B742996BC0000779DBB /* LoopScrollManager.swift in Sources */,
+				722E0B742996BC0000779DBB /* CollectionLoopScrollManager.swift in Sources */,
 				722E0B4C2996BBA200779DBB /* SectionTag.swift in Sources */,
 				722E0B702996BC0000779DBB /* LeftAlignCollectionViewFlowLayout.swift in Sources */,
 				722E0B722996BC0000779DBB /* HorizontalScrollCell.swift in Sources */,
