@@ -22,7 +22,7 @@ final class TagSectionHeader: UICollectionReusableView {
 
     // MARK: - Public Interface
 
-    func setLabelText(_ text: String?) {
+    func setLabelText(_ text: String) {
         label.text = text
     }
 

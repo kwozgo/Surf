@@ -1,11 +1,5 @@
 import UIKit
 
-extension FlexibleAreaCell: CanConfigureCell {
-    func configure(with viewModels: [TagViewModel]) {
-        dataSource = viewModels
-    }
-}
-
 final class FlexibleAreaCell: UITableViewCell {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var collectionViewHeightConstraint: NSLayoutConstraint!
@@ -26,10 +20,10 @@ final class FlexibleAreaCell: UITableViewCell {
 
     override var frame: CGRect {
         willSet {
-            guard let cell = makeCellViaNib() else { return }
+            guard let cell = UINib.instantiateNibCell(for: CollectionViewCell.self, owner: self) else { return }
             cell.configure(TagViewModel(title: "Any Text", state: Bool.random()))
 
-            let cellHeight = layoutSize(for: cell).height
+            let cellHeight = cell.layoutSize().height
             let maximumAllowableHeight = cellHeight * CGFloat(rowsCount) + cellHorizontalSpace
             //collectionViewHeightConstraint.constant = maximumAllowableHeight
 
@@ -86,10 +80,10 @@ final class FlexibleAreaCell: UITableViewCell {
 
     private func configureCollectionLayout() {
         configureLeftAlignCollectionViewFlowLayout()
-        guard let cell = makeCellViaNib() else { return }
+        guard let cell = UINib.instantiateNibCell(for: CollectionViewCell.self, owner: self) else { return }
         cell.configure(TagViewModel(title: "Any Text", state: Bool.random()))
 
-        let cellHeight = layoutSize(for: cell).height
+        let cellHeight = cell.layoutSize().height
         let maximumAllowableHeight = cellHeight * CGFloat(rowsCount) + cellHorizontalSpace
         collectionViewHeightConstraint.constant = maximumAllowableHeight
 
@@ -119,12 +113,11 @@ final class FlexibleAreaCell: UITableViewCell {
 
     private func calculateFrameOfCells(for rowsCount: Int, in dataSource: [TagViewModel]) -> [[CGRect]] {
         var frameOfCells: [[CGRect]] = Array(repeating: [], count: rowsCount)
-        guard let cell = makeCellViaNib() else { return frameOfCells }
+        guard let cell = UINib.instantiateNibCell(for: CollectionViewCell.self, owner: self) else { return frameOfCells }
 
         for (index, viewModel) in dataSource.enumerated() {
             cell.configure(viewModel)
-            let cellSize = layoutSize(for: cell)
-            let cellRectangle = CGRect(origin: .zero, size: cellSize)
+            let cellRectangle = CGRect(origin: .zero, size: cell.layoutSize())
             frameOfCells[index % rowsCount].append(cellRectangle)
         }
 
@@ -139,25 +132,18 @@ final class FlexibleAreaCell: UITableViewCell {
         }
         return frameOfCells
     }
+}
 
-    private func makeCellViaNib() -> CollectionViewCell? {
-        let bundle = Bundle(for: CollectionViewCell.self)
-        let cellNib = UINib(nibName: "CollectionViewCell", bundle: bundle)
-        return cellNib.instantiate(withOwner: self).first as? CollectionViewCell
-    }
+// MARK: - FlexibleAreaCell+CanConfigureCell
 
-    private func layoutSize(for view: UIView) -> CGSize {
-        let sizeToFit = CGSize(width: 100, height: 50)
-        let viewSize = view.systemLayoutSizeFitting(
-            sizeToFit,
-            withHorizontalFittingPriority: .defaultLow,
-            verticalFittingPriority: .fittingSizeLevel
-        )
-        return viewSize
+extension FlexibleAreaCell: CanConfigureCell {
+
+    func configure(with viewModels: [TagViewModel]) {
+        dataSource = viewModels
     }
 }
 
-// MARK: - UICollectionViewDataSource
+// MARK: - FlexibleAreaCell+UICollectionViewDataSource
 
 extension FlexibleAreaCell: UICollectionViewDataSource {
 
@@ -185,7 +171,7 @@ extension FlexibleAreaCell: UICollectionViewDataSource {
     }
 }
 
-// MARK: - UICollectionViewDelegate
+// MARK: - FlexibleAreaCell+UICollectionViewDelegate
 
 extension FlexibleAreaCell: UICollectionViewDelegate {
 

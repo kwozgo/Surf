@@ -38,28 +38,12 @@ final class HorizontalScrollCell: UITableViewCell {
     }
 
     private func configureCollectionHeight() {
-        guard let cell = makeCellViaNib() else { return }
+        guard let cell = UINib.instantiateNibCell(for: CollectionViewCell.self, owner: self) else { return }
         cell.configure(TagViewModel(title: "Any Text", state: Bool.random()))
 
-        let cellHeight = layoutSize(for: cell).height
+        let cellHeight = cell.layoutSize().height
         let maximumAllowableHeight = cellHeight
         collectionViewHeightConstraint.constant = maximumAllowableHeight
-    }
-
-    private func makeCellViaNib() -> CollectionViewCell? {
-        let bundle = Bundle(for: CollectionViewCell.self)
-        let cellNib = UINib(nibName: "CollectionViewCell", bundle: bundle)
-        return cellNib.instantiate(withOwner: self).first as? CollectionViewCell
-    }
-
-    private func layoutSize(for view: UIView) -> CGSize {
-        let sizeToFit = CGSize(width: 100, height: 50)
-        let viewSize = view.systemLayoutSizeFitting(
-            sizeToFit,
-            withHorizontalFittingPriority: .defaultLow,
-            verticalFittingPriority: .fittingSizeLevel
-        )
-        return viewSize
     }
 }
 

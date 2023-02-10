@@ -37,6 +37,8 @@
 		722E0B7A2996BCEF00779DBB /* UIApplication+UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B792996BCEF00779DBB /* UIApplication+UIWindow.swift */; };
 		722E0B7C2996BD5700779DBB /* SubmitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B7B2996BD5700779DBB /* SubmitView.swift */; };
 		722E0B7E2996BE3100779DBB /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B7D2996BE3100779DBB /* ModalViewController.swift */; };
+		722E0B802996C66900779DBB /* UIView+CGSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B7F2996C66900779DBB /* UIView+CGSize.swift */; };
+		722E0B822996C82800779DBB /* UINib+UICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B812996C82800779DBB /* UINib+UICollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +74,8 @@
 		722E0B792996BCEF00779DBB /* UIApplication+UIWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+UIWindow.swift"; sourceTree = "<group>"; };
 		722E0B7B2996BD5700779DBB /* SubmitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitView.swift; sourceTree = "<group>"; };
 		722E0B7D2996BE3100779DBB /* ModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
+		722E0B7F2996C66900779DBB /* UIView+CGSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CGSize.swift"; sourceTree = "<group>"; };
+		722E0B812996C82800779DBB /* UINib+UICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINib+UICollectionViewCell.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +158,8 @@
 				722E0B3C2996BB9C00779DBB /* Array.swift */,
 				722E0B3D2996BB9C00779DBB /* UITableView.swift */,
 				722E0B792996BCEF00779DBB /* UIApplication+UIWindow.swift */,
+				722E0B7F2996C66900779DBB /* UIView+CGSize.swift */,
+				722E0B812996C82800779DBB /* UINib+UICollectionViewCell.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -192,7 +198,7 @@
 		722E0B552996BC0000779DBB /* Surf */ = {
 			isa = PBXGroup;
 			children = (
-				722E0B562996BC0000779DBB /* Subviews */,
+				722E0B562996BC0000779DBB /* Views */,
 				722E0B6A2996BC0000779DBB /* TableViewController.swift */,
 				722E0B6B2996BC0000779DBB /* TableViewController.xib */,
 				722E0B7D2996BE3100779DBB /* ModalViewController.swift */,
@@ -200,14 +206,14 @@
 			path = Surf;
 			sourceTree = "<group>";
 		};
-		722E0B562996BC0000779DBB /* Subviews */ = {
+		722E0B562996BC0000779DBB /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				722E0B7B2996BD5700779DBB /* SubmitView.swift */,
 				722E0B572996BC0000779DBB /* Cells */,
 				722E0B652996BC0000779DBB /* Headers */,
 			);
-			path = Subviews;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		722E0B572996BC0000779DBB /* Cells */ = {
@@ -374,8 +380,10 @@
 				722E0B4F2996BBA200779DBB /* Color.swift in Sources */,
 				722E0B6C2996BC0000779DBB /* CollectionViewCell.swift in Sources */,
 				722E0B7E2996BE3100779DBB /* ModalViewController.swift in Sources */,
+				722E0B802996C66900779DBB /* UIView+CGSize.swift in Sources */,
 				722E0B772996BC0000779DBB /* TableViewController.swift in Sources */,
 				722E0B712996BC0000779DBB /* HorizontalDynamicItemWidthFlowLayout.swift in Sources */,
+				722E0B822996C82800779DBB /* UINib+UICollectionViewCell.swift in Sources */,
 				722E0B522996BBA200779DBB /* TagViewModel+LoopScrollModel.swift in Sources */,
 				722E0B242996B9D900779DBB /* AppDelegate.swift in Sources */,
 				722E0B7A2996BCEF00779DBB /* UIApplication+UIWindow.swift in Sources */,
