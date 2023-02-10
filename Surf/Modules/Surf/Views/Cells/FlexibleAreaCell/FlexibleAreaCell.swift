@@ -1,5 +1,7 @@
 import UIKit
 
+
+
 final class FlexibleAreaCell: UITableViewCell {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var collectionViewHeightConstraint: NSLayoutConstraint!
@@ -47,7 +49,7 @@ final class FlexibleAreaCell: UITableViewCell {
     // MARK: - Private Helpers
 
     private func configureCollectionView() {
-        registerCollectionCell()
+        collectionView.registerCell(with: "CollectionViewCell")
         configureCollectionDelegates()
         configureCollectionLayout()
         configureCollectionScrollIndicators()
@@ -63,10 +65,6 @@ final class FlexibleAreaCell: UITableViewCell {
         )
     }
 
-    private func registerCollectionCell() {
-        let cellNib = UINib(nibName: "CollectionViewCell", bundle: .main)
-        collectionView.register(cellNib, forCellWithReuseIdentifier: "CollectionViewCell")
-    }
 
     private func configureCollectionDelegates() {
         collectionView.delegate = self

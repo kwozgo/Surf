@@ -1,11 +1,5 @@
 import UIKit
 
-extension HorizontalScrollCell: CanConfigureCell {
-    func configure(with viewModels: [TagViewModel]) {
-        dataSource = viewModels
-    }
-}
-
 final class HorizontalScrollCell: UITableViewCell {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var collectionViewHeightConstraint: NSLayoutConstraint!
@@ -15,7 +9,7 @@ final class HorizontalScrollCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        registerCollectionCell()
+        collectionView.registerCell(with: "CollectionViewCell")
         configureCollectionHeight()
     }
 
@@ -32,11 +26,6 @@ final class HorizontalScrollCell: UITableViewCell {
 
     // MARK: - Private Helpers
 
-    private func registerCollectionCell() {
-        let cellNib = UINib(nibName: "CollectionViewCell", bundle: .main)
-        collectionView.register(cellNib, forCellWithReuseIdentifier: "CollectionViewCell")
-    }
-
     private func configureCollectionHeight() {
         guard let cell = UINib.instantiateNibCell(for: CollectionViewCell.self, owner: self) else { return }
         cell.configure(TagViewModel(title: "Any Text", state: Bool.random()))
@@ -46,6 +35,17 @@ final class HorizontalScrollCell: UITableViewCell {
         collectionViewHeightConstraint.constant = maximumAllowableHeight
     }
 }
+
+// MARK: - HorizontalScrollCell+CanConfigureCell
+
+extension HorizontalScrollCell: CanConfigureCell {
+
+    func configure(with viewModels: [TagViewModel]) {
+        dataSource = viewModels
+    }
+}
+
+// MARK: - HorizontalScrollCell+InfiniteScrollingBehaviourDelegate
 
 extension HorizontalScrollCell: InfiniteScrollingBehaviourDelegate {
 
@@ -65,7 +65,6 @@ extension HorizontalScrollCell: InfiniteScrollingBehaviourDelegate {
             return
         }
         setUpdateState(for: cell, at: originalIndex)
-
     }
 
     private func setUpdateState(for cell: CollectionViewCell, at indexPath: Int) {

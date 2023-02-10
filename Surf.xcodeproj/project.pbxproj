@@ -39,6 +39,7 @@
 		722E0B7E2996BE3100779DBB /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B7D2996BE3100779DBB /* ModalViewController.swift */; };
 		722E0B802996C66900779DBB /* UIView+CGSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B7F2996C66900779DBB /* UIView+CGSize.swift */; };
 		722E0B822996C82800779DBB /* UINib+UICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B812996C82800779DBB /* UINib+UICollectionViewCell.swift */; };
+		722E0B842996C93200779DBB /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B832996C93200779DBB /* UICollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		722E0B7D2996BE3100779DBB /* ModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		722E0B7F2996C66900779DBB /* UIView+CGSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CGSize.swift"; sourceTree = "<group>"; };
 		722E0B812996C82800779DBB /* UINib+UICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINib+UICollectionViewCell.swift"; sourceTree = "<group>"; };
+		722E0B832996C93200779DBB /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 				722E0B792996BCEF00779DBB /* UIApplication+UIWindow.swift */,
 				722E0B7F2996C66900779DBB /* UIView+CGSize.swift */,
 				722E0B812996C82800779DBB /* UINib+UICollectionViewCell.swift */,
+				722E0B832996C93200779DBB /* UICollectionView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				722E0B3F2996BB9C00779DBB /* UITableView.swift in Sources */,
 				722E0B532996BBA200779DBB /* TagViewModel.swift in Sources */,
 				722E0B6E2996BC0000779DBB /* FlexibleAreaCell.swift in Sources */,
+				722E0B842996C93200779DBB /* UICollectionView.swift in Sources */,
 				722E0B512996BBA200779DBB /* TagViewModel+Color.swift in Sources */,
 				722E0B502996BBA200779DBB /* TagDatabase.swift in Sources */,
 				722E0B4F2996BBA200779DBB /* Color.swift in Sources */,
