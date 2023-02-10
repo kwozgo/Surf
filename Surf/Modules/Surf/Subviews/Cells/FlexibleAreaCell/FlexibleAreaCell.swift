@@ -1,5 +1,11 @@
 import UIKit
 
+extension FlexibleAreaCell: CanConfigureCell {
+    func configure(with viewModels: [TagViewModel]) {
+        dataSource = viewModels
+    }
+}
+
 final class FlexibleAreaCell: UITableViewCell {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var collectionViewHeightConstraint: NSLayoutConstraint!
@@ -42,12 +48,6 @@ final class FlexibleAreaCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-    }
-
-    // MARK: - Public Interface
-
-    func configure(with viewModels: [TagViewModel]) {
-        dataSource = viewModels
     }
 
     // MARK: - Private Helpers

@@ -8,3 +8,11 @@ extension UITableView {
         header.frame.size.height = newSize.height
     }
 }
+
+extension UITableView {
+
+    func registerCell(for identifier: String) {
+        let cellNib = UINib(nibName: identifier, bundle: .main)
+        register(cellNib, forCellReuseIdentifier: identifier)
+    }
+}

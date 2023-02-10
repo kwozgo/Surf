@@ -1,5 +1,11 @@
 import UIKit
 
+extension HorizontalScrollCell: CanConfigureCell {
+    func configure(with viewModels: [TagViewModel]) {
+        dataSource = viewModels
+    }
+}
+
 final class HorizontalScrollCell: UITableViewCell {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var collectionViewHeightConstraint: NSLayoutConstraint!
@@ -22,12 +28,6 @@ final class HorizontalScrollCell: UITableViewCell {
         guard infiniteScrollingBehaviour == nil else { return }
         let configuration = CollectionViewConfiguration(layoutType: .numberOfCellOnScreen(4), scrollingDirection: .horizontal)
         infiniteScrollingBehaviour = InfiniteScrollingBehaviour(withCollectionView: collectionView, andData: dataSource, delegate: self, configuration: configuration)
-    }
-
-    // MARK: - Public Interface
-
-    func configure(with viewModels: [TagViewModel]) {
-        dataSource = viewModels
     }
 
     // MARK: - Private Helpers

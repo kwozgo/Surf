@@ -105,10 +105,10 @@
 			isa = PBXGroup;
 			children = (
 				722E0B402996BBA200779DBB /* Models */,
+				722E0B372996BA7400779DBB /* Sources */,
 				722E0B3B2996BB9C00779DBB /* Extensions */,
 				722E0B392996BA8800779DBB /* Modules */,
 				722E0B382996BA7C00779DBB /* Settings */,
-				722E0B372996BA7400779DBB /* Sources */,
 			);
 			path = Surf;
 			sourceTree = "<group>";
@@ -134,8 +134,8 @@
 		722E0B392996BA8800779DBB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				722E0B552996BC0000779DBB /* Surf */,
 				722E0B3A2996BA9100779DBB /* Launch */,
+				722E0B552996BC0000779DBB /* Surf */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -152,8 +152,8 @@
 			isa = PBXGroup;
 			children = (
 				722E0B3C2996BB9C00779DBB /* Array.swift */,
-				722E0B792996BCEF00779DBB /* UIApplication+UIWindow.swift */,
 				722E0B3D2996BB9C00779DBB /* UITableView.swift */,
+				722E0B792996BCEF00779DBB /* UIApplication+UIWindow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -173,8 +173,8 @@
 		722E0B422996BBA200779DBB /* Color */ = {
 			isa = PBXGroup;
 			children = (
-				722E0B432996BBA200779DBB /* UIColor+HEX.swift */,
 				722E0B452996BBA200779DBB /* Color.swift */,
+				722E0B432996BBA200779DBB /* UIColor+HEX.swift */,
 			);
 			path = Color;
 			sourceTree = "<group>";
