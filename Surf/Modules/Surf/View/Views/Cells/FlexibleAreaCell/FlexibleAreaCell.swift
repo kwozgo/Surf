@@ -20,15 +20,8 @@ final class FlexibleAreaCell: UITableViewCell {
 
     override var frame: CGRect {
         willSet {
-            guard let cell = makeCellViaNib() else { return }
-            cell.configure(TagViewModel(title: "Any Text", state: Bool.random()))
-
-            let cellHeight = layoutSize(for: cell).height
-            let maximumAllowableHeight = cellHeight * CGFloat(rowsCount) + cellHorizontalSpace
-            //collectionViewHeightConstraint.constant = maximumAllowableHeight
-
+            let maximumAllowableHeight = calculateCollectionMaximumAllowableHeight()
             let totalContentHeight = leftAlignCollectionViewFlowLayout.collectionViewContentSize.height
-
             if totalContentHeight > maximumAllowableHeight {
                 configureHorizontalDynamicItemWidthFlowLayout()
             }
@@ -40,38 +33,14 @@ final class FlexibleAreaCell: UITableViewCell {
         configureCollectionView()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-
-    // MARK: - Public Interface
-
-    func configure(with viewModels: [TagViewModel]) {
-        dataSource = viewModels
-    }
-
     // MARK: - Private Helpers
 
     private func configureCollectionView() {
-        registerCollectionCell()
+        collectionView.registerCell(with: "CollectionViewCell")
         configureCollectionDelegates()
         configureCollectionLayout()
         configureCollectionScrollIndicators()
         configureCollectionContentInset()
-    }
-
-    private func configureCollectionContentInset() {
-        collectionView.contentInset = UIEdgeInsets(
-            top: .zero,
-            left: 20,
-            bottom: .zero,
-            right: .zero
-        )
-    }
-
-    private func registerCollectionCell() {
-        let cellNib = UINib(nibName: "CollectionViewCell", bundle: .main)
-        collectionView.register(cellNib, forCellWithReuseIdentifier: "CollectionViewCell")
     }
 
     private func configureCollectionDelegates() {
@@ -84,20 +53,30 @@ final class FlexibleAreaCell: UITableViewCell {
         collectionView.showsHorizontalScrollIndicator = false
     }
 
+    private func configureCollectionContentInset() {
+        collectionView.contentInset = UIEdgeInsets(
+            top: .zero,
+            left: 20,
+            bottom: .zero,
+            right: .zero
+        )
+    }
+
     private func configureCollectionLayout() {
         configureLeftAlignCollectionViewFlowLayout()
-        guard let cell = makeCellViaNib() else { return }
+        let maximumAllowableHeight = calculateCollectionMaximumAllowableHeight()
+        collectionViewHeightConstraint.constant = maximumAllowableHeight
+    }
+
+    private func calculateCollectionMaximumAllowableHeight() -> CGFloat {
+        guard let cell = UINib.instantiateNibCell(for: CollectionViewCell.self, owner: self) else {
+            return .zero
+        }
         cell.configure(TagViewModel(title: "Any Text", state: Bool.random()))
 
-        let cellHeight = layoutSize(for: cell).height
+        let cellHeight = cell.layoutSize().height
         let maximumAllowableHeight = cellHeight * CGFloat(rowsCount) + cellHorizontalSpace
-        collectionViewHeightConstraint.constant = maximumAllowableHeight
-
-        let totalContentHeight = leftAlignCollectionViewFlowLayout.collectionViewContentSize.height
-
-        if totalContentHeight > maximumAllowableHeight {
-            configureHorizontalDynamicItemWidthFlowLayout()
-        }
+        return maximumAllowableHeight
     }
 
     private func configureLeftAlignCollectionViewFlowLayout() {
@@ -106,8 +85,8 @@ final class FlexibleAreaCell: UITableViewCell {
     }
 
     private func configureHorizontalDynamicItemWidthFlowLayout() {
-        horizontalDynamicItemWidthFlowLayout.minimumInteritemSpacing = 12
-        horizontalDynamicItemWidthFlowLayout.minimumLineSpacing = 12
+        horizontalDynamicItemWidthFlowLayout.minimumInteritemSpacing = cellVerticalSpace
+        horizontalDynamicItemWidthFlowLayout.minimumLineSpacing = cellHorizontalSpace
         horizontalDynamicItemWidthFlowLayout.estimatedItemSize = CGSize(width: 96, height: 64)
 
         let frames = calculateFrameOfCells(for: rowsCount, in: dataSource)
@@ -119,12 +98,11 @@ final class FlexibleAreaCell: UITableViewCell {
 
     private func calculateFrameOfCells(for rowsCount: Int, in dataSource: [TagViewModel]) -> [[CGRect]] {
         var frameOfCells: [[CGRect]] = Array(repeating: [], count: rowsCount)
-        guard let cell = makeCellViaNib() else { return frameOfCells }
+        guard let cell = UINib.instantiateNibCell(for: CollectionViewCell.self, owner: self) else { return frameOfCells }
 
         for (index, viewModel) in dataSource.enumerated() {
             cell.configure(viewModel)
-            let cellSize = layoutSize(for: cell)
-            let cellRectangle = CGRect(origin: .zero, size: cellSize)
+            let cellRectangle = CGRect(origin: .zero, size: cell.layoutSize())
             frameOfCells[index % rowsCount].append(cellRectangle)
         }
 
@@ -139,25 +117,18 @@ final class FlexibleAreaCell: UITableViewCell {
         }
         return frameOfCells
     }
+}
 
-    private func makeCellViaNib() -> CollectionViewCell? {
-        let bundle = Bundle(for: CollectionViewCell.self)
-        let cellNib = UINib(nibName: "CollectionViewCell", bundle: bundle)
-        return cellNib.instantiate(withOwner: self).first as? CollectionViewCell
-    }
+// MARK: - FlexibleAreaCell+CanConfigureCell
 
-    private func layoutSize(for view: UIView) -> CGSize {
-        let sizeToFit = CGSize(width: 100, height: 50)
-        let viewSize = view.systemLayoutSizeFitting(
-            sizeToFit,
-            withHorizontalFittingPriority: .defaultLow,
-            verticalFittingPriority: .fittingSizeLevel
-        )
-        return viewSize
+extension FlexibleAreaCell: CanConfigureCell {
+
+    func configure(with viewModels: [TagViewModel]) {
+        dataSource = viewModels
     }
 }
 
-// MARK: - UICollectionViewDataSource
+// MARK: - FlexibleAreaCell+UICollectionViewDataSource
 
 extension FlexibleAreaCell: UICollectionViewDataSource {
 
@@ -185,7 +156,7 @@ extension FlexibleAreaCell: UICollectionViewDataSource {
     }
 }
 
-// MARK: - UICollectionViewDelegate
+// MARK: - FlexibleAreaCell+UICollectionViewDelegate
 
 extension FlexibleAreaCell: UICollectionViewDelegate {
 
