@@ -29,7 +29,7 @@
 		722E0B712996BC0000779DBB /* HorizontalDynamicItemWidthFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B602996BC0000779DBB /* HorizontalDynamicItemWidthFlowLayout.swift */; };
 		722E0B722996BC0000779DBB /* HorizontalScrollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B622996BC0000779DBB /* HorizontalScrollCell.swift */; };
 		722E0B732996BC0000779DBB /* HorizontalScrollCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 722E0B632996BC0000779DBB /* HorizontalScrollCell.xib */; };
-		722E0B742996BC0000779DBB /* InfiniteScrollingBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B642996BC0000779DBB /* InfiniteScrollingBehaviour.swift */; };
+		722E0B742996BC0000779DBB /* LoopScrollManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B642996BC0000779DBB /* LoopScrollManager.swift */; };
 		722E0B752996BC0000779DBB /* TagSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B672996BC0000779DBB /* TagSectionHeader.swift */; };
 		722E0B762996BC0000779DBB /* TagTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B692996BC0000779DBB /* TagTableHeader.swift */; };
 		722E0B772996BC0000779DBB /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B6A2996BC0000779DBB /* TableViewController.swift */; };
@@ -40,6 +40,12 @@
 		722E0B802996C66900779DBB /* UIView+CGSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B7F2996C66900779DBB /* UIView+CGSize.swift */; };
 		722E0B822996C82800779DBB /* UINib+UICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B812996C82800779DBB /* UINib+UICollectionViewCell.swift */; };
 		722E0B842996C93200779DBB /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B832996C93200779DBB /* UICollectionView.swift */; };
+		722E0B872996D03B00779DBB /* LoopScrollModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B862996D03B00779DBB /* LoopScrollModel.swift */; };
+		722E0B892996D05300779DBB /* LayoutType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B882996D05300779DBB /* LayoutType.swift */; };
+		722E0B8B2996D06100779DBB /* CollectionViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B8A2996D06100779DBB /* CollectionViewConfiguration.swift */; };
+		722E0B8D2996D0E400779DBB /* LoopScrollManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B8C2996D0E400779DBB /* LoopScrollManagerDelegate.swift */; };
+		722E0B8F2996D17200779DBB /* Double+CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B8E2996D17200779DBB /* Double+CGFloat.swift */; };
+		722E0B912996D17A00779DBB /* Int+CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B902996D17A00779DBB /* Int+CGFloat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,7 +73,7 @@
 		722E0B602996BC0000779DBB /* HorizontalDynamicItemWidthFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalDynamicItemWidthFlowLayout.swift; sourceTree = "<group>"; };
 		722E0B622996BC0000779DBB /* HorizontalScrollCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalScrollCell.swift; sourceTree = "<group>"; };
 		722E0B632996BC0000779DBB /* HorizontalScrollCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontalScrollCell.xib; sourceTree = "<group>"; };
-		722E0B642996BC0000779DBB /* InfiniteScrollingBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingBehaviour.swift; sourceTree = "<group>"; };
+		722E0B642996BC0000779DBB /* LoopScrollManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoopScrollManager.swift; sourceTree = "<group>"; };
 		722E0B672996BC0000779DBB /* TagSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSectionHeader.swift; sourceTree = "<group>"; };
 		722E0B692996BC0000779DBB /* TagTableHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTableHeader.swift; sourceTree = "<group>"; };
 		722E0B6A2996BC0000779DBB /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +84,12 @@
 		722E0B7F2996C66900779DBB /* UIView+CGSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CGSize.swift"; sourceTree = "<group>"; };
 		722E0B812996C82800779DBB /* UINib+UICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINib+UICollectionViewCell.swift"; sourceTree = "<group>"; };
 		722E0B832996C93200779DBB /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
+		722E0B862996D03B00779DBB /* LoopScrollModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopScrollModel.swift; sourceTree = "<group>"; };
+		722E0B882996D05300779DBB /* LayoutType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutType.swift; sourceTree = "<group>"; };
+		722E0B8A2996D06100779DBB /* CollectionViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewConfiguration.swift; sourceTree = "<group>"; };
+		722E0B8C2996D0E400779DBB /* LoopScrollManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopScrollManagerDelegate.swift; sourceTree = "<group>"; };
+		722E0B8E2996D17200779DBB /* Double+CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+CGFloat.swift"; sourceTree = "<group>"; };
+		722E0B902996D17A00779DBB /* Int+CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+CGFloat.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +175,8 @@
 				722E0B7F2996C66900779DBB /* UIView+CGSize.swift */,
 				722E0B812996C82800779DBB /* UINib+UICollectionViewCell.swift */,
 				722E0B832996C93200779DBB /* UICollectionView.swift */,
+				722E0B8E2996D17200779DBB /* Double+CGFloat.swift */,
+				722E0B902996D17A00779DBB /* Int+CGFloat.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -260,9 +274,10 @@
 		722E0B612996BC0000779DBB /* HorizontalScrollCell */ = {
 			isa = PBXGroup;
 			children = (
+				722E0B852996D02C00779DBB /* LoopScroll */,
 				722E0B622996BC0000779DBB /* HorizontalScrollCell.swift */,
 				722E0B632996BC0000779DBB /* HorizontalScrollCell.xib */,
-				722E0B642996BC0000779DBB /* InfiniteScrollingBehaviour.swift */,
+				722E0B642996BC0000779DBB /* LoopScrollManager.swift */,
 			);
 			path = HorizontalScrollCell;
 			sourceTree = "<group>";
@@ -290,6 +305,17 @@
 				722E0B692996BC0000779DBB /* TagTableHeader.swift */,
 			);
 			path = Table;
+			sourceTree = "<group>";
+		};
+		722E0B852996D02C00779DBB /* LoopScroll */ = {
+			isa = PBXGroup;
+			children = (
+				722E0B862996D03B00779DBB /* LoopScrollModel.swift */,
+				722E0B882996D05300779DBB /* LayoutType.swift */,
+				722E0B8A2996D06100779DBB /* CollectionViewConfiguration.swift */,
+				722E0B8C2996D0E400779DBB /* LoopScrollManagerDelegate.swift */,
+			);
+			path = LoopScroll;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,11 +392,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				722E0B8D2996D0E400779DBB /* LoopScrollManagerDelegate.swift in Sources */,
 				722E0B3E2996BB9C00779DBB /* Array.swift in Sources */,
+				722E0B8F2996D17200779DBB /* Double+CGFloat.swift in Sources */,
 				722E0B4D2996BBA200779DBB /* UIColor+HEX.swift in Sources */,
 				722E0B542996BBA200779DBB /* TagSectionViewModel.swift in Sources */,
 				722E0B752996BC0000779DBB /* TagSectionHeader.swift in Sources */,
-				722E0B742996BC0000779DBB /* InfiniteScrollingBehaviour.swift in Sources */,
+				722E0B742996BC0000779DBB /* LoopScrollManager.swift in Sources */,
 				722E0B4C2996BBA200779DBB /* SectionTag.swift in Sources */,
 				722E0B702996BC0000779DBB /* LeftAlignCollectionViewFlowLayout.swift in Sources */,
 				722E0B722996BC0000779DBB /* HorizontalScrollCell.swift in Sources */,
@@ -382,16 +410,20 @@
 				722E0B512996BBA200779DBB /* TagViewModel+Color.swift in Sources */,
 				722E0B502996BBA200779DBB /* TagDatabase.swift in Sources */,
 				722E0B4F2996BBA200779DBB /* Color.swift in Sources */,
+				722E0B912996D17A00779DBB /* Int+CGFloat.swift in Sources */,
 				722E0B6C2996BC0000779DBB /* CollectionViewCell.swift in Sources */,
 				722E0B7E2996BE3100779DBB /* ModalViewController.swift in Sources */,
 				722E0B802996C66900779DBB /* UIView+CGSize.swift in Sources */,
 				722E0B772996BC0000779DBB /* TableViewController.swift in Sources */,
 				722E0B712996BC0000779DBB /* HorizontalDynamicItemWidthFlowLayout.swift in Sources */,
 				722E0B822996C82800779DBB /* UINib+UICollectionViewCell.swift in Sources */,
+				722E0B892996D05300779DBB /* LayoutType.swift in Sources */,
 				722E0B522996BBA200779DBB /* TagViewModel+LoopScrollModel.swift in Sources */,
 				722E0B242996B9D900779DBB /* AppDelegate.swift in Sources */,
 				722E0B7A2996BCEF00779DBB /* UIApplication+UIWindow.swift in Sources */,
 				722E0B7C2996BD5700779DBB /* SubmitView.swift in Sources */,
+				722E0B8B2996D06100779DBB /* CollectionViewConfiguration.swift in Sources */,
+				722E0B872996D03B00779DBB /* LoopScrollModel.swift in Sources */,
 				722E0B262996B9D900779DBB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

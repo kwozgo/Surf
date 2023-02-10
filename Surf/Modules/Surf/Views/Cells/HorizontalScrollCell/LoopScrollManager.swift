@@ -1,58 +1,13 @@
-//
-//  InfiniteScrollingBehaviour.swift
-//  InfiniteScrolling
-//
-//  Created by Vishal Singh on 1/21/17.
-//  Copyright © 2017 Vishal Singh. All rights reserved.
-//
-
 import UIKit
 
-public protocol InfiniteScrollingBehaviourDelegate: AnyObject {
-    func configuredCell(forItemAtIndexPath indexPath: IndexPath, originalIndex: Int, andData data: LoopScrollModel, forInfiniteScrollingBehaviour behaviour: InfiniteScrollingBehaviour) -> UICollectionViewCell
-    func didSelectItem(atIndexPath indexPath: IndexPath, originalIndex: Int, andData data: LoopScrollModel, inInfiniteScrollingBehaviour behaviour: InfiniteScrollingBehaviour) -> Void
-    func didEndScrolling(inInfiniteScrollingBehaviour behaviour: InfiniteScrollingBehaviour)
-    func verticalPaddingForHorizontalInfiniteScrollingBehaviour(behaviour: InfiniteScrollingBehaviour) -> CGFloat
-    func horizonalPaddingForHorizontalInfiniteScrollingBehaviour(behaviour: InfiniteScrollingBehaviour) -> CGFloat
-}
-
-public extension InfiniteScrollingBehaviourDelegate {
-    func didSelectItem(atIndexPath indexPath: IndexPath, originalIndex: Int, andData data: LoopScrollModel, inInfiniteScrollingBehaviour behaviour: InfiniteScrollingBehaviour) -> Void { }
-    func didEndScrolling(inInfiniteScrollingBehaviour behaviour: InfiniteScrollingBehaviour) { }
-    func verticalPaddingForHorizontalInfiniteScrollingBehaviour(behaviour: InfiniteScrollingBehaviour) -> CGFloat {
-        return 0
-    }
-    func horizonalPaddingForHorizontalInfiniteScrollingBehaviour(behaviour: InfiniteScrollingBehaviour) -> CGFloat {
-        return 0
-    }
-}
-
-public protocol LoopScrollModel { }
-
-public enum LayoutType {
-    case fixedSize(sizeValue: CGFloat, lineSpacing: CGFloat)
-    case numberOfCellOnScreen(Double)
-}
-
-public struct CollectionViewConfiguration {
-    public let scrollingDirection: UICollectionView.ScrollDirection
-    public var layoutType: LayoutType
-    public static let `default` = CollectionViewConfiguration(layoutType: .numberOfCellOnScreen(5), scrollingDirection: .horizontal)
-    
-    public init(layoutType: LayoutType, scrollingDirection: UICollectionView.ScrollDirection) {
-        self.layoutType = layoutType
-        self.scrollingDirection = scrollingDirection
-    }
-}
-
-public class InfiniteScrollingBehaviour: NSObject {
+final class LoopScrollManager: NSObject {
     fileprivate var cellSize: CGFloat = 0.0
-    fileprivate var padding: CGFloat = 0.0
+    fileprivate var space: CGFloat = 0.0
     fileprivate var numberOfBoundaryElements = 0
     fileprivate(set) public weak var collectionView: UICollectionView!
-    fileprivate(set) public weak var delegate: InfiniteScrollingBehaviourDelegate?
+    fileprivate(set) public weak var delegate: LoopScrollManagerDelegate?
     fileprivate(set) public var dataSet: [LoopScrollModel]
-    fileprivate(set) public var dataSetWithBoundary: [LoopScrollModel] = []
+    fileprivate(set) public var boundaryDataSource: [LoopScrollModel] = []
     
     fileprivate var collectionViewBoundsValue: CGFloat {
         get {
@@ -78,7 +33,7 @@ public class InfiniteScrollingBehaviour: NSObject {
     
     fileprivate(set) public var collectionConfiguration: CollectionViewConfiguration
     
-    public init(withCollectionView collectionView: UICollectionView, andData dataSet: [LoopScrollModel], delegate: InfiniteScrollingBehaviourDelegate, configuration: CollectionViewConfiguration = .default) {
+    public init(withCollectionView collectionView: UICollectionView, andData dataSet: [LoopScrollModel], delegate: LoopScrollManagerDelegate, configuration: CollectionViewConfiguration) {
         self.collectionView = collectionView
         self.dataSet = dataSet
         self.collectionConfiguration = configuration
@@ -91,7 +46,7 @@ public class InfiniteScrollingBehaviour: NSObject {
     
     
     private func configureBoundariesForInfiniteScroll() {
-        dataSetWithBoundary = dataSet
+        boundaryDataSource = dataSet
         calculateCellWidth()
         let absoluteNumberOfElementsOnScreen = ceil(collectionViewBoundsValue / cellSize)
         numberOfBoundaryElements = Int(absoluteNumberOfElementsOnScreen)
@@ -103,10 +58,10 @@ public class InfiniteScrollingBehaviour: NSObject {
         switch collectionConfiguration.layoutType {
         case .fixedSize(let sizeValue, let padding):
             cellSize = sizeValue
-            self.padding = padding
+            self.space = padding
         case .numberOfCellOnScreen(let numberOfCellsOnScreen):
             cellSize = (collectionViewBoundsValue/numberOfCellsOnScreen.cgFloat)
-            padding = 12
+            space = 12
         }
     }
     
@@ -114,14 +69,14 @@ public class InfiniteScrollingBehaviour: NSObject {
         for index in stride(from: numberOfBoundaryElements, to: 0, by: -1) {
             let indexToAdd = (dataSet.count - 1) - ((numberOfBoundaryElements - index)%dataSet.count)
             let data = dataSet[indexToAdd]
-            dataSetWithBoundary.insert(data, at: 0)
+            boundaryDataSource.insert(data, at: 0)
         }
     }
     
     private func addTrailingBoundaryElements() {
         for index in 0..<numberOfBoundaryElements {
             let data = dataSet[index%dataSet.count]
-            dataSetWithBoundary.append(data)
+            boundaryDataSource.append(data)
         }
     }
     
@@ -183,25 +138,43 @@ public class InfiniteScrollingBehaviour: NSObject {
             self.scrollToFirstElement()
         }
     }
+
+    // MARK: - Private Helpers
+
+    private func getModelInformation(for indexPath: IndexPath) -> (originIndex: Int, viewModel: LoopScrollModel) {
+        let originIndex = indexInOriginalDataSet(forIndexInBoundaryDataSet: indexPath.item)
+        let viewModel = boundaryDataSource[indexPath.item]
+        return (originIndex, viewModel)
+    }
 }
 
-extension InfiniteScrollingBehaviour: UICollectionViewDelegateFlowLayout {
+// MARK: - LoopScrollManager+UICollectionViewDelegateFlowLayout
+
+extension LoopScrollManager: UICollectionViewDelegateFlowLayout {
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return padding
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumLineSpacingForSectionAt section: Int
+    ) -> CGFloat {
+        space
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return padding
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumInteritemSpacingForSectionAt section: Int
+    ) -> CGFloat {
+        space
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         switch (collectionConfiguration.scrollingDirection, delegate) {
         case (.horizontal, .some(let delegate)):
-            let inset = delegate.verticalPaddingForHorizontalInfiniteScrollingBehaviour(behaviour: self)
+            let inset = delegate.verticalInsetOfHorizontalScroll(self)
             return UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         case (.vertical, .some(let delegate)):
-            let inset = delegate.horizonalPaddingForHorizontalInfiniteScrollingBehaviour(behaviour: self)
+            let inset = delegate.horizonalInsetOfHorizontalScroll(self)
             return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
         case (_, _):
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -244,71 +217,72 @@ extension InfiniteScrollingBehaviour: UICollectionViewDelegateFlowLayout {
         return viewSize
     }
 
-    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let originalIndex = indexInOriginalDataSet(forIndexInBoundaryDataSet: indexPath.item)
-        delegate?.didSelectItem(atIndexPath: indexPath, originalIndex: originalIndex, andData: dataSetWithBoundary[indexPath.item], inInfiniteScrollingBehaviour: self)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let modelInformation = getModelInformation(for: indexPath)
+        delegate?.loopScrollManager(
+            self,
+            didSelectAt: indexPath,
+            origin: modelInformation.originIndex,
+            viewModel: modelInformation.viewModel
+        )
     }
     
     
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let boundarySize = numberOfBoundaryElements.cgFloat * cellSize + (numberOfBoundaryElements.cgFloat * padding)
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let boundarySize = numberOfBoundaryElements.cgFloat * cellSize + (numberOfBoundaryElements.cgFloat * space)
         let contentOffsetValue = collectionConfiguration.scrollingDirection == .horizontal ? scrollView.contentOffset.x : scrollView.contentOffset.y
         if contentOffsetValue >= (scrollViewContentSizeValue - boundarySize) {
-            let offset = boundarySize - padding
+            let offset = boundarySize - space
             let updatedOffsetPoint = collectionConfiguration.scrollingDirection == .horizontal ?
                 CGPoint(x: offset, y: 0) : CGPoint(x: 0, y: offset)
             scrollView.contentOffset = updatedOffsetPoint
         } else if contentOffsetValue <= 0 {
-            let boundaryLessSize = dataSet.count.cgFloat * cellSize + (dataSet.count.cgFloat * padding)
+            let boundaryLessSize = dataSet.count.cgFloat * cellSize + (dataSet.count.cgFloat * space)
             let updatedOffsetPoint = collectionConfiguration.scrollingDirection == .horizontal ?
                 CGPoint(x: boundaryLessSize, y: 0) : CGPoint(x: 0, y: boundaryLessSize)
             scrollView.contentOffset = updatedOffsetPoint
         }
     }
     
-    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        delegate?.didEndScrolling(inInfiniteScrollingBehaviour: self)
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        delegate?.loopScrollManagerDidEndDecelerating(self)
     }
     
-    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if decelerate == false {
-            delegate?.didEndScrolling(inInfiniteScrollingBehaviour: self)
+            delegate?.loopScrollManagerDidEndDecelerating(self)
         }
     }
-    
 }
 
-extension InfiniteScrollingBehaviour: UICollectionViewDataSource {
-    public func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+// MARK: - LoopScrollManager+UICollectionViewDataSource
+
+extension LoopScrollManager: UICollectionViewDataSource {
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        1
     }
     
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataSetWithBoundary.count
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
+        boundaryDataSource.count
     }
     
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let delegate = self.delegate else {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        guard let delegate else {
             return UICollectionViewCell()
         }
-        let originalIndex = indexInOriginalDataSet(forIndexInBoundaryDataSet: indexPath.item)
-        return delegate.configuredCell(forItemAtIndexPath: indexPath, originalIndex: originalIndex, andData: dataSetWithBoundary[indexPath.item], forInfiniteScrollingBehaviour: self)
+        let modelInformation = getModelInformation(for: indexPath)
+        return delegate.configureCell(
+            self,
+            at: indexPath,
+            origin: modelInformation.originIndex,
+            viewModel: modelInformation.viewModel
+        )
     }
 }
-
-extension Double {
-    var cgFloat: CGFloat {
-        get {
-            return CGFloat(self)
-        }
-    }
-}
-
-extension Int {
-    var cgFloat: CGFloat {
-        get {
-            return CGFloat(self)
-        }
-    }
-}
-
