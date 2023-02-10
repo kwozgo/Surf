@@ -1,7 +1,5 @@
 import UIKit
 
-
-
 final class FlexibleAreaCell: UITableViewCell {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var collectionViewHeightConstraint: NSLayoutConstraint!
@@ -22,15 +20,8 @@ final class FlexibleAreaCell: UITableViewCell {
 
     override var frame: CGRect {
         willSet {
-            guard let cell = UINib.instantiateNibCell(for: CollectionViewCell.self, owner: self) else { return }
-            cell.configure(TagViewModel(title: "Any Text", state: Bool.random()))
-
-            let cellHeight = cell.layoutSize().height
-            let maximumAllowableHeight = cellHeight * CGFloat(rowsCount) + cellHorizontalSpace
-            //collectionViewHeightConstraint.constant = maximumAllowableHeight
-
+            let maximumAllowableHeight = calculateCollectionMaximumAllowableHeight()
             let totalContentHeight = leftAlignCollectionViewFlowLayout.collectionViewContentSize.height
-
             if totalContentHeight > maximumAllowableHeight {
                 configureHorizontalDynamicItemWidthFlowLayout()
             }
@@ -40,10 +31,6 @@ final class FlexibleAreaCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         configureCollectionView()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
     }
 
     // MARK: - Private Helpers
@@ -56,16 +43,6 @@ final class FlexibleAreaCell: UITableViewCell {
         configureCollectionContentInset()
     }
 
-    private func configureCollectionContentInset() {
-        collectionView.contentInset = UIEdgeInsets(
-            top: .zero,
-            left: 20,
-            bottom: .zero,
-            right: .zero
-        )
-    }
-
-
     private func configureCollectionDelegates() {
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -76,20 +53,30 @@ final class FlexibleAreaCell: UITableViewCell {
         collectionView.showsHorizontalScrollIndicator = false
     }
 
+    private func configureCollectionContentInset() {
+        collectionView.contentInset = UIEdgeInsets(
+            top: .zero,
+            left: 20,
+            bottom: .zero,
+            right: .zero
+        )
+    }
+
     private func configureCollectionLayout() {
         configureLeftAlignCollectionViewFlowLayout()
-        guard let cell = UINib.instantiateNibCell(for: CollectionViewCell.self, owner: self) else { return }
+        let maximumAllowableHeight = calculateCollectionMaximumAllowableHeight()
+        collectionViewHeightConstraint.constant = maximumAllowableHeight
+    }
+
+    private func calculateCollectionMaximumAllowableHeight() -> CGFloat {
+        guard let cell = UINib.instantiateNibCell(for: CollectionViewCell.self, owner: self) else {
+            return .zero
+        }
         cell.configure(TagViewModel(title: "Any Text", state: Bool.random()))
 
         let cellHeight = cell.layoutSize().height
         let maximumAllowableHeight = cellHeight * CGFloat(rowsCount) + cellHorizontalSpace
-        collectionViewHeightConstraint.constant = maximumAllowableHeight
-
-        let totalContentHeight = leftAlignCollectionViewFlowLayout.collectionViewContentSize.height
-
-        if totalContentHeight > maximumAllowableHeight {
-            configureHorizontalDynamicItemWidthFlowLayout()
-        }
+        return maximumAllowableHeight
     }
 
     private func configureLeftAlignCollectionViewFlowLayout() {
@@ -98,8 +85,8 @@ final class FlexibleAreaCell: UITableViewCell {
     }
 
     private func configureHorizontalDynamicItemWidthFlowLayout() {
-        horizontalDynamicItemWidthFlowLayout.minimumInteritemSpacing = 12
-        horizontalDynamicItemWidthFlowLayout.minimumLineSpacing = 12
+        horizontalDynamicItemWidthFlowLayout.minimumInteritemSpacing = cellVerticalSpace
+        horizontalDynamicItemWidthFlowLayout.minimumLineSpacing = cellHorizontalSpace
         horizontalDynamicItemWidthFlowLayout.estimatedItemSize = CGSize(width: 96, height: 64)
 
         let frames = calculateFrameOfCells(for: rowsCount, in: dataSource)

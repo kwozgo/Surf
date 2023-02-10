@@ -10,21 +10,11 @@ final class HorizontalDynamicItemWidthFlowLayout: UICollectionViewFlowLayout {
     }
 
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-//        guard
-//            let layoutAttributes = super.layoutAttributesForElements(in: rect)
-//        else {
-//            return nil
-//        }
-
-
-        var r: CGRect = rect
-        // we could probably get and use the max-width from the cachedFrames array...
-        //  but let's just set it to a very large value for now
-        r.size.width = 50000
-        guard let layoutAttributes = super.layoutAttributesForElements(in: r) else {
+        guard
+            let layoutAttributes = super.layoutAttributesForElements(in: rect)
+        else {
             return nil
         }
-
         let rowsCount = frameOfCells.count
         guard
             let attributesToReturn = layoutAttributes.map({ $0.copy() }) as? [UICollectionViewLayoutAttributes]
