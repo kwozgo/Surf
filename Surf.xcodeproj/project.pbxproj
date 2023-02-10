@@ -11,6 +11,31 @@
 		722E0B262996B9D900779DBB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B252996B9D900779DBB /* SceneDelegate.swift */; };
 		722E0B2D2996B9DB00779DBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 722E0B2C2996B9DB00779DBB /* Assets.xcassets */; };
 		722E0B302996B9DB00779DBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 722E0B2E2996B9DB00779DBB /* LaunchScreen.storyboard */; };
+		722E0B3E2996BB9C00779DBB /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B3C2996BB9C00779DBB /* Array.swift */; };
+		722E0B3F2996BB9C00779DBB /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B3D2996BB9C00779DBB /* UITableView.swift */; };
+		722E0B4C2996BBA200779DBB /* SectionTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B412996BBA200779DBB /* SectionTag.swift */; };
+		722E0B4D2996BBA200779DBB /* UIColor+HEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B432996BBA200779DBB /* UIColor+HEX.swift */; };
+		722E0B4F2996BBA200779DBB /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B452996BBA200779DBB /* Color.swift */; };
+		722E0B502996BBA200779DBB /* TagDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B462996BBA200779DBB /* TagDatabase.swift */; };
+		722E0B512996BBA200779DBB /* TagViewModel+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B482996BBA200779DBB /* TagViewModel+Color.swift */; };
+		722E0B522996BBA200779DBB /* TagViewModel+LoopScrollModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B492996BBA200779DBB /* TagViewModel+LoopScrollModel.swift */; };
+		722E0B532996BBA200779DBB /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B4A2996BBA200779DBB /* TagViewModel.swift */; };
+		722E0B542996BBA200779DBB /* TagSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B4B2996BBA200779DBB /* TagSectionViewModel.swift */; };
+		722E0B6C2996BC0000779DBB /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B592996BC0000779DBB /* CollectionViewCell.swift */; };
+		722E0B6D2996BC0000779DBB /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 722E0B5A2996BC0000779DBB /* CollectionViewCell.xib */; };
+		722E0B6E2996BC0000779DBB /* FlexibleAreaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B5C2996BC0000779DBB /* FlexibleAreaCell.swift */; };
+		722E0B6F2996BC0000779DBB /* FlexibleAreaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 722E0B5D2996BC0000779DBB /* FlexibleAreaCell.xib */; };
+		722E0B702996BC0000779DBB /* LeftAlignCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B5F2996BC0000779DBB /* LeftAlignCollectionViewFlowLayout.swift */; };
+		722E0B712996BC0000779DBB /* HorizontalDynamicItemWidthFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B602996BC0000779DBB /* HorizontalDynamicItemWidthFlowLayout.swift */; };
+		722E0B722996BC0000779DBB /* HorizontalScrollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B622996BC0000779DBB /* HorizontalScrollCell.swift */; };
+		722E0B732996BC0000779DBB /* HorizontalScrollCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 722E0B632996BC0000779DBB /* HorizontalScrollCell.xib */; };
+		722E0B742996BC0000779DBB /* InfiniteScrollingBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B642996BC0000779DBB /* InfiniteScrollingBehaviour.swift */; };
+		722E0B752996BC0000779DBB /* TagSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B672996BC0000779DBB /* TagSectionHeader.swift */; };
+		722E0B762996BC0000779DBB /* TagTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B692996BC0000779DBB /* TagTableHeader.swift */; };
+		722E0B772996BC0000779DBB /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B6A2996BC0000779DBB /* TableViewController.swift */; };
+		722E0B782996BC0000779DBB /* TableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 722E0B6B2996BC0000779DBB /* TableViewController.xib */; };
+		722E0B7A2996BCEF00779DBB /* UIApplication+UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B792996BCEF00779DBB /* UIApplication+UIWindow.swift */; };
+		722E0B7C2996BD5700779DBB /* SubmitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E0B7B2996BD5700779DBB /* SubmitView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +45,31 @@
 		722E0B2C2996B9DB00779DBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		722E0B2F2996B9DB00779DBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		722E0B312996B9DB00779DBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		722E0B3C2996BB9C00779DBB /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		722E0B3D2996BB9C00779DBB /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		722E0B412996BBA200779DBB /* SectionTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionTag.swift; sourceTree = "<group>"; };
+		722E0B432996BBA200779DBB /* UIColor+HEX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+HEX.swift"; sourceTree = "<group>"; };
+		722E0B452996BBA200779DBB /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		722E0B462996BBA200779DBB /* TagDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagDatabase.swift; sourceTree = "<group>"; };
+		722E0B482996BBA200779DBB /* TagViewModel+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TagViewModel+Color.swift"; sourceTree = "<group>"; };
+		722E0B492996BBA200779DBB /* TagViewModel+LoopScrollModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TagViewModel+LoopScrollModel.swift"; sourceTree = "<group>"; };
+		722E0B4A2996BBA200779DBB /* TagViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
+		722E0B4B2996BBA200779DBB /* TagSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSectionViewModel.swift; sourceTree = "<group>"; };
+		722E0B592996BC0000779DBB /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		722E0B5A2996BC0000779DBB /* CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
+		722E0B5C2996BC0000779DBB /* FlexibleAreaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexibleAreaCell.swift; sourceTree = "<group>"; };
+		722E0B5D2996BC0000779DBB /* FlexibleAreaCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlexibleAreaCell.xib; sourceTree = "<group>"; };
+		722E0B5F2996BC0000779DBB /* LeftAlignCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftAlignCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		722E0B602996BC0000779DBB /* HorizontalDynamicItemWidthFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalDynamicItemWidthFlowLayout.swift; sourceTree = "<group>"; };
+		722E0B622996BC0000779DBB /* HorizontalScrollCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalScrollCell.swift; sourceTree = "<group>"; };
+		722E0B632996BC0000779DBB /* HorizontalScrollCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontalScrollCell.xib; sourceTree = "<group>"; };
+		722E0B642996BC0000779DBB /* InfiniteScrollingBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingBehaviour.swift; sourceTree = "<group>"; };
+		722E0B672996BC0000779DBB /* TagSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSectionHeader.swift; sourceTree = "<group>"; };
+		722E0B692996BC0000779DBB /* TagTableHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTableHeader.swift; sourceTree = "<group>"; };
+		722E0B6A2996BC0000779DBB /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		722E0B6B2996BC0000779DBB /* TableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewController.xib; sourceTree = "<group>"; };
+		722E0B792996BCEF00779DBB /* UIApplication+UIWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+UIWindow.swift"; sourceTree = "<group>"; };
+		722E0B7B2996BD5700779DBB /* SubmitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +102,8 @@
 		722E0B222996B9D900779DBB /* Surf */ = {
 			isa = PBXGroup;
 			children = (
+				722E0B402996BBA200779DBB /* Models */,
+				722E0B3B2996BB9C00779DBB /* Extensions */,
 				722E0B392996BA8800779DBB /* Modules */,
 				722E0B382996BA7C00779DBB /* Settings */,
 				722E0B372996BA7400779DBB /* Sources */,
@@ -80,6 +132,7 @@
 		722E0B392996BA8800779DBB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				722E0B552996BC0000779DBB /* Surf */,
 				722E0B3A2996BA9100779DBB /* Launch */,
 			);
 			path = Modules;
@@ -91,6 +144,140 @@
 				722E0B2E2996B9DB00779DBB /* LaunchScreen.storyboard */,
 			);
 			path = Launch;
+			sourceTree = "<group>";
+		};
+		722E0B3B2996BB9C00779DBB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				722E0B3C2996BB9C00779DBB /* Array.swift */,
+				722E0B792996BCEF00779DBB /* UIApplication+UIWindow.swift */,
+				722E0B3D2996BB9C00779DBB /* UITableView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		722E0B402996BBA200779DBB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				722E0B422996BBA200779DBB /* Color */,
+				722E0B472996BBA200779DBB /* TagViewModel */,
+				722E0B412996BBA200779DBB /* SectionTag.swift */,
+				722E0B462996BBA200779DBB /* TagDatabase.swift */,
+				722E0B4B2996BBA200779DBB /* TagSectionViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		722E0B422996BBA200779DBB /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				722E0B432996BBA200779DBB /* UIColor+HEX.swift */,
+				722E0B452996BBA200779DBB /* Color.swift */,
+			);
+			path = Color;
+			sourceTree = "<group>";
+		};
+		722E0B472996BBA200779DBB /* TagViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				722E0B482996BBA200779DBB /* TagViewModel+Color.swift */,
+				722E0B492996BBA200779DBB /* TagViewModel+LoopScrollModel.swift */,
+				722E0B4A2996BBA200779DBB /* TagViewModel.swift */,
+			);
+			path = TagViewModel;
+			sourceTree = "<group>";
+		};
+		722E0B552996BC0000779DBB /* Surf */ = {
+			isa = PBXGroup;
+			children = (
+				722E0B562996BC0000779DBB /* Subviews */,
+				722E0B6A2996BC0000779DBB /* TableViewController.swift */,
+				722E0B6B2996BC0000779DBB /* TableViewController.xib */,
+			);
+			path = Surf;
+			sourceTree = "<group>";
+		};
+		722E0B562996BC0000779DBB /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				722E0B7B2996BD5700779DBB /* SubmitView.swift */,
+				722E0B572996BC0000779DBB /* Cells */,
+				722E0B652996BC0000779DBB /* Headers */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		722E0B572996BC0000779DBB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				722E0B582996BC0000779DBB /* CollectionCell */,
+				722E0B5B2996BC0000779DBB /* FlexibleAreaCell */,
+				722E0B612996BC0000779DBB /* HorizontalScrollCell */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		722E0B582996BC0000779DBB /* CollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				722E0B592996BC0000779DBB /* CollectionViewCell.swift */,
+				722E0B5A2996BC0000779DBB /* CollectionViewCell.xib */,
+			);
+			path = CollectionCell;
+			sourceTree = "<group>";
+		};
+		722E0B5B2996BC0000779DBB /* FlexibleAreaCell */ = {
+			isa = PBXGroup;
+			children = (
+				722E0B5C2996BC0000779DBB /* FlexibleAreaCell.swift */,
+				722E0B5D2996BC0000779DBB /* FlexibleAreaCell.xib */,
+				722E0B5E2996BC0000779DBB /* Layouts */,
+			);
+			path = FlexibleAreaCell;
+			sourceTree = "<group>";
+		};
+		722E0B5E2996BC0000779DBB /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				722E0B5F2996BC0000779DBB /* LeftAlignCollectionViewFlowLayout.swift */,
+				722E0B602996BC0000779DBB /* HorizontalDynamicItemWidthFlowLayout.swift */,
+			);
+			path = Layouts;
+			sourceTree = "<group>";
+		};
+		722E0B612996BC0000779DBB /* HorizontalScrollCell */ = {
+			isa = PBXGroup;
+			children = (
+				722E0B622996BC0000779DBB /* HorizontalScrollCell.swift */,
+				722E0B632996BC0000779DBB /* HorizontalScrollCell.xib */,
+				722E0B642996BC0000779DBB /* InfiniteScrollingBehaviour.swift */,
+			);
+			path = HorizontalScrollCell;
+			sourceTree = "<group>";
+		};
+		722E0B652996BC0000779DBB /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				722E0B662996BC0000779DBB /* Section */,
+				722E0B682996BC0000779DBB /* Table */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		722E0B662996BC0000779DBB /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				722E0B672996BC0000779DBB /* TagSectionHeader.swift */,
+			);
+			path = Section;
+			sourceTree = "<group>";
+		};
+		722E0B682996BC0000779DBB /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				722E0B692996BC0000779DBB /* TagTableHeader.swift */,
+			);
+			path = Table;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,7 +339,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				722E0B302996B9DB00779DBB /* LaunchScreen.storyboard in Resources */,
+				722E0B6F2996BC0000779DBB /* FlexibleAreaCell.xib in Resources */,
+				722E0B732996BC0000779DBB /* HorizontalScrollCell.xib in Resources */,
+				722E0B782996BC0000779DBB /* TableViewController.xib in Resources */,
 				722E0B2D2996B9DB00779DBB /* Assets.xcassets in Resources */,
+				722E0B6D2996BC0000779DBB /* CollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +354,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				722E0B3E2996BB9C00779DBB /* Array.swift in Sources */,
+				722E0B4D2996BBA200779DBB /* UIColor+HEX.swift in Sources */,
+				722E0B542996BBA200779DBB /* TagSectionViewModel.swift in Sources */,
+				722E0B752996BC0000779DBB /* TagSectionHeader.swift in Sources */,
+				722E0B742996BC0000779DBB /* InfiniteScrollingBehaviour.swift in Sources */,
+				722E0B4C2996BBA200779DBB /* SectionTag.swift in Sources */,
+				722E0B702996BC0000779DBB /* LeftAlignCollectionViewFlowLayout.swift in Sources */,
+				722E0B722996BC0000779DBB /* HorizontalScrollCell.swift in Sources */,
+				722E0B762996BC0000779DBB /* TagTableHeader.swift in Sources */,
+				722E0B3F2996BB9C00779DBB /* UITableView.swift in Sources */,
+				722E0B532996BBA200779DBB /* TagViewModel.swift in Sources */,
+				722E0B6E2996BC0000779DBB /* FlexibleAreaCell.swift in Sources */,
+				722E0B512996BBA200779DBB /* TagViewModel+Color.swift in Sources */,
+				722E0B502996BBA200779DBB /* TagDatabase.swift in Sources */,
+				722E0B4F2996BBA200779DBB /* Color.swift in Sources */,
+				722E0B6C2996BC0000779DBB /* CollectionViewCell.swift in Sources */,
+				722E0B772996BC0000779DBB /* TableViewController.swift in Sources */,
+				722E0B712996BC0000779DBB /* HorizontalDynamicItemWidthFlowLayout.swift in Sources */,
+				722E0B522996BBA200779DBB /* TagViewModel+LoopScrollModel.swift in Sources */,
 				722E0B242996B9D900779DBB /* AppDelegate.swift in Sources */,
+				722E0B7A2996BCEF00779DBB /* UIApplication+UIWindow.swift in Sources */,
+				722E0B7C2996BD5700779DBB /* SubmitView.swift in Sources */,
 				722E0B262996B9D900779DBB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
