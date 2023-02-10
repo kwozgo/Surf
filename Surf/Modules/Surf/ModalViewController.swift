@@ -91,11 +91,11 @@ final class ModalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSelf()
+        configureSubmitContainerViewConstraints()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        configureSubmitContainerViewConstraints()
         configureSubmitViewConstraints()
         animatePresentationMovement()
     }
