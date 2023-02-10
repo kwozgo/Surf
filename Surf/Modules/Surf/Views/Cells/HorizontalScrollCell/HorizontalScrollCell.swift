@@ -87,6 +87,6 @@ extension HorizontalScrollCell: LoopScrollManagerDelegate {
 
     private func setUpdateState(for cell: CollectionViewCell, at index: Int) {
         dataSource[index].state.toggle()
-        loopScrollManager.reload(withData: dataSource)
+        loopScrollManager.reload(with: dataSource)
     }
 }
