@@ -25,7 +25,7 @@ final class HorizontalScrollCell: UITableViewCell {
     
     private func configureLoopScrollManager() {
         let configuration = CollectionViewConfiguration(
-            layoutType: .numberOfCellOnScreen(4),
+            layoutType: .numberOfCellOnScreen(4.5),
             scrollingDirection: .horizontal
         )
         collectionLoopScrollManager = CollectionLoopScrollManager(
